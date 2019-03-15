@@ -10,7 +10,7 @@ class App extends React.Component {
         super()
 
         this.state = {
-            // isLoading: false,
+            isLoading: false,
             pets: [],
             filters: {
                 type: 'all'
@@ -19,7 +19,7 @@ class App extends React.Component {
     }
 
     fetchData = () => {
-        // this.setState({ isLoading: true });
+        this.setState({ isLoading: true });
         let urlEndPoint = '/api/pets';
 
         if (this.state.filters.type !== 'all'){
@@ -28,7 +28,10 @@ class App extends React.Component {
 
         fetch(urlEndPoint)
             .then(res => res.json())
-            .then(pets => this.setState({ pets: pets }));
+            .then(pets => this.setState({ 
+                pets: pets, 
+                isLoading: false
+            }));
     }
 
     updateFilterType = (event) => {
