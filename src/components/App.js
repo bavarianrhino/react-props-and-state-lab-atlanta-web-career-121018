@@ -28,7 +28,7 @@ class App extends React.Component {
 
         fetch(urlEndPoint)
             .then(res => res.json())
-            .then(pets => this.setState({ pets }));
+            .then(pets => this.setState({ pets: pets }));
     }
 
     updateFilterType = (event) => {
@@ -40,14 +40,14 @@ class App extends React.Component {
     }
 
     onAdoptPet = (id) => {
-        let pets = this.state.pets.map(pet => {
+        let adoptedUpdatedPets = this.state.pets.map(pet => {
             if (pet.id === id ){
                 return {...pet, isAdopted: true}
             } else {
                 return pet
             }
         })
-        this.setState({ pets })
+        this.setState({ pets: adoptedUpdatedPets })
     }
 
     render() {
